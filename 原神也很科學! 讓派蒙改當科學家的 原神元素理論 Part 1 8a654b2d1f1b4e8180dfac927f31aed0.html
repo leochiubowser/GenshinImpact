@@ -1,0 +1,690 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>原神也很科學! 讓派蒙改當科學家的 原神元素理論 Part 1</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="8a654b2d-1f1b-4e81-80df-ac927f31aed0" class="page sans"><header><h1 class="page-title">原神也很科學! 讓派蒙改當科學家的 原神元素理論 Part 1</h1><p class="page-description"></p></header><div class="page-body"><p id="19f2ba05-1700-408f-9ceb-ae98e3b94d36" class="">
+</p><p id="24c2eb28-f060-400a-b61d-a6920fdf7d2f" class="">Elemental Gauge Theory 是在原神(Genshin Impact)中用來解釋”元素“在這個遊戲的運作方式，是熱於遊戲的玩家們研究與討論出來的結果，如果你已經迫不及待且做好心理準備，讓我們一起進入原神的核心機制吧…</p><p id="80046f18-dff5-4e56-84c4-c30b8a31cd74" class="">
+</p><p id="8b791d63-a942-42fb-9d91-bd7459abe2ef" class=""><strong>*文長約1500字</strong></p><h2 id="646d1ab5-a446-4d84-8ddc-e4d1d27f459b" class=""><mark class="highlight-blue">基本概念</mark></h2><p id="db1ad92b-b7e0-4c20-93d1-387b7b2dbe31" class="">  每個角色對敵人造成元素傷害時，會有不同的量，一個單位稱為1U (Unit)。舉個例子，麗莎使用普通攻擊的時候，就會有1U，也就是1單位的雷元素，而凱亞對敵人使出元素戰技的時候會有2U（2個單位）的冰元素。(若想查看所有角色產生的元素量U請見附錄2)</p><p id="7f3aedd9-afa9-411b-9df3-4c28ede430ca" class="">
+</p><p id="2d1a2a44-14e2-47aa-ac98-3669a975a111" class="">   聰明的你說這也太簡單了吧？ 但是麻煩的來了，不同單位量元素附著時，單位量越大的減少速度越快。 你說你聽不懂？ 先別把急著把影片關掉，讓我解釋給你聽：一樣是凱亞，還記得他E技能可以產生2U的冰元素對吧！ 這個表格顯示不同單位元素的消失速度:</p><p id="ccc5bd1f-542f-480f-b4c4-e93e67d8e298" class="">(s per unit = 每1單位消失所需秒數，<mark class="highlight-red">數字越大</mark>表示每1個單位消失所需的秒數越長，簡單來說就是可以<mark class="highlight-red">持續較久</mark>)</p><p id="19b1f917-6839-437f-b9af-17479b697609" class="">（<strong>詳細計算方式請見附錄1）</strong></p><figure id="31164b42-25a8-4733-9a41-8f1252e92f82" class="image"><a href="%E5%8E%9F%E7%A5%9E%E4%B9%9F%E5%BE%88%E7%A7%91%E5%AD%B8!%20%E8%AE%93%E6%B4%BE%E8%92%99%E6%94%B9%E7%95%B6%E7%A7%91%E5%AD%B8%E5%AE%B6%E7%9A%84%20%E5%8E%9F%E7%A5%9E%E5%85%83%E7%B4%A0%E7%90%86%E8%AB%96%20Part%201%208a654b2d1f1b4e8180dfac927f31aed0/Screenshot_2023-08-22_at_9.46.21_PM.png"><img style="width:336px" src="%E5%8E%9F%E7%A5%9E%E4%B9%9F%E5%BE%88%E7%A7%91%E5%AD%B8!%20%E8%AE%93%E6%B4%BE%E8%92%99%E6%94%B9%E7%95%B6%E7%A7%91%E5%AD%B8%E5%AE%B6%E7%9A%84%20%E5%8E%9F%E7%A5%9E%E5%85%83%E7%B4%A0%E7%90%86%E8%AB%96%20Part%201%208a654b2d1f1b4e8180dfac927f31aed0/Screenshot_2023-08-22_at_9.46.21_PM.png"/></a></figure><p id="2e615c65-abb0-48c4-92f3-03b98bd03506" class="">如圖所示，使用2U的元素技能後，1個單位會持續7.5秒，也就是說凱亞的E技能2U（兩個單位）的冰元素會持續7.5 *2秒 嗎？   </p><p id="f87d9185-3b2d-439e-9327-8ae91c373a7f" class="">似乎不是？ 但這是為什麼呢？</p><p id="912c9015-a202-4b15-8042-6ff000a9cbb2" class="">
+</p><p id="d0793700-1c0c-4b29-aecb-85f4caa2e3ee" class="">當元素附著在敵人上造成元素附著時，會<mark class="highlight-red">收稅</mark>，你沒聽錯，一樣拿凱亞舉例，當使用E技能時，原本有2U的冰元素會變成只剩1.6U （笑) 。規則也意外的簡單，就是將2U <mark class="highlight-red">*0.8 </mark>就可以了。</p><p id="faf9921a-1dbd-47cc-b98e-c6c60a4d23a3" class="">
+</p><p id="7c69e557-19fb-43c1-b7ea-85ea8a64141a" class="">將表中的的元素量 （表格左側）乘上0.8之後，就會變成右邊收過稅的元素量（表格右側）</p><figure id="4b1de648-9775-4f82-9fd6-c4a716be03f9" class="image"><a href="%E5%8E%9F%E7%A5%9E%E4%B9%9F%E5%BE%88%E7%A7%91%E5%AD%B8!%20%E8%AE%93%E6%B4%BE%E8%92%99%E6%94%B9%E7%95%B6%E7%A7%91%E5%AD%B8%E5%AE%B6%E7%9A%84%20%E5%8E%9F%E7%A5%9E%E5%85%83%E7%B4%A0%E7%90%86%E8%AB%96%20Part%201%208a654b2d1f1b4e8180dfac927f31aed0/Screenshot_2023-08-22_at_9.39.25_PM.png"><img style="width:384px" src="%E5%8E%9F%E7%A5%9E%E4%B9%9F%E5%BE%88%E7%A7%91%E5%AD%B8!%20%E8%AE%93%E6%B4%BE%E8%92%99%E6%94%B9%E7%95%B6%E7%A7%91%E5%AD%B8%E5%AE%B6%E7%9A%84%20%E5%8E%9F%E7%A5%9E%E5%85%83%E7%B4%A0%E7%90%86%E8%AB%96%20Part%201%208a654b2d1f1b4e8180dfac927f31aed0/Screenshot_2023-08-22_at_9.39.25_PM.png"/></a></figure><p id="9e43d677-17c6-4d3d-b0c2-3a6f52980d12" class="">聰明的你也一定發現，因為風和岩元素沒有辦法元素附著，因此他們並不會被收稅（*0.8）XD</p><p id="7bec0ee0-5507-4b10-ad28-c57fcc2489fd" class="">
+</p><p id="c592cb98-071f-4aa0-b605-c7c5a7038591" class="">  好啦我們再次嘗試計算，凱亞再次使出E技能，技能接觸到敵人後，會收稅，所以我們把2U的冰元素*0.8 =1.6U，接著因為凱亞使出2U的招式，所以1單位的元素需要7.5秒才會消失，1.6U * 7.5 = 12 ，因此我們得到答案了！ 凱亞的使用的E技能碰到敵人並附著後，需要12秒才會消失。</p><p id="1a2a77c0-d63a-4c07-8e35-e816f231894c" class=""><strong>在這邊你可能會發現有點奇怪，這是正常的，元素消失的速度是看還沒有收稅前的2U(每單位7.5秒)，而不是收稅後1.6U所對照的速度</strong></p><p id="de0c7627-7ec2-487e-827e-a653fe95f4be" class="">
+</p><hr id="13ee2243-963c-4f77-9fe8-40cd4c03d84f"/><h2 id="9f962e75-23a2-4552-9c2a-285b1ac0f7b0" class=""><mark class="highlight-red">相同</mark><mark class="highlight-blue">元素的疊加</mark></h2><p id="c5e1ed9a-83b2-4a0a-b2ab-a15ea4d827b9" class="">
+</p><p id="ed5d87cb-f47f-4019-990b-b6de087b9db2" class="">  當相同元素同時添加於敵人上時，並不會和我們想的一樣增加該元素，而是<mark class="highlight-red">覆蓋</mark>上去，<mark class="highlight-red">消失速度不會改變</mark>（到底在講什麼鬼啊？）</p><p id="a74ea276-f365-4ad2-be74-25675c896070" class="">  舉個例子，當使用菲謝爾的蓄力射箭擊中敵人後，對敵人附著0.8U的雷元素（元素附著: 1U*0.8），接著立刻使用雷澤的E技能攻擊同樣的敵人，造成1.6U（元素附著: 2U*0.8）的雷元素，此時敵人會有1.6U的雷元素(雷澤覆蓋原本菲謝爾0.8U的雷元素)，而元素消失的速度呢？是菲謝爾的1U，對照表格可以發現，是每單位元素消失時間11.875秒，也就是說敵人身上雷元素總共附著的時間為: 1.6*11.875 = <mark class="highlight-red">19秒</mark></p><p id="d1cc9a09-26b6-4db7-977d-352c022ef124" class="">  透過這個原理，我們可以先使用元素量較少，也就是單位元素減少速度較慢的技能(如上文中使用的菲謝爾蓄力射箭等)給敵人上元素，再用元素量較多，也就是單位元素減少速度較快的技能(如上文使用的雷澤E [2U]，或北斗Q [4U] 等)上相同元素，即可讓敵人的元素附著時間變得超級長~</p><p id="fee1b666-f756-4317-bfa4-5ef009de57a1" class="">  若比較例子中先用菲謝爾再用雷澤技能 與 直接使用雷澤技能的時間，同樣最後都是有1.6U的元素附著於敵人，但直接使用雷澤技能的話，持續時間只有1.6*7.5 ＝ <mark class="highlight-red">12秒</mark>，<mark class="highlight-red">差距</mark>就有整整<mark class="highlight-red">7秒</mark>了！如果使用北斗Q的話，差距則會更為明顯，這邊就留給大家去實驗看看。</p><h2 id="24829d7c-2501-4452-bb2f-a6f880b4c3be" class=""><mark class="highlight-red">不同</mark><mark class="highlight-blue">元素的疊加（元素反應）</mark></h2><p id="35df15a7-6e53-4691-82e8-0e61a71475d3" class="">
+</p><p id="f8c5bf0a-d08a-49c2-a9b6-151f02b22e8a" class="">這是元素反應，下集再講，也可以考慮<mark class="highlight-teal"><strong>訂閱</strong></mark>才不會找不到新影片</p><p id="43c4806c-17be-4638-bfd8-52e270152d65" class="">
+</p><hr id="afc9d94d-e719-4a82-acc9-9822eadd7869"/><h2 id="592c0216-529e-43cd-9f64-bb3b1d939132" class="">附錄1：元素消失的速度</h2><p id="609d8ca2-af1f-43d6-aecc-0d645a310632" class="">每單位元素的消失速度遵循下列公式：</p><figure id="5eac929b-185f-4bbf-b2b8-9dd608dd817f" class="image"><a href="%E5%8E%9F%E7%A5%9E%E4%B9%9F%E5%BE%88%E7%A7%91%E5%AD%B8!%20%E8%AE%93%E6%B4%BE%E8%92%99%E6%94%B9%E7%95%B6%E7%A7%91%E5%AD%B8%E5%AE%B6%E7%9A%84%20%E5%8E%9F%E7%A5%9E%E5%85%83%E7%B4%A0%E7%90%86%E8%AB%96%20Part%201%208a654b2d1f1b4e8180dfac927f31aed0/Screenshot_2023-08-22_at_10.04.11_PM.png"><img style="width:384px" src="%E5%8E%9F%E7%A5%9E%E4%B9%9F%E5%BE%88%E7%A7%91%E5%AD%B8!%20%E8%AE%93%E6%B4%BE%E8%92%99%E6%94%B9%E7%95%B6%E7%A7%91%E5%AD%B8%E5%AE%B6%E7%9A%84%20%E5%8E%9F%E7%A5%9E%E5%85%83%E7%B4%A0%E7%90%86%E8%AB%96%20Part%201%208a654b2d1f1b4e8180dfac927f31aed0/Screenshot_2023-08-22_at_10.04.11_PM.png"/></a></figure><p id="1db429d4-c998-417f-8a82-af9d3badf631" class="">Durability (耐久性，是另一種表示元素量的方式) = 25*單位元素(U)</p><p id="bb09186d-12e1-4b9f-803a-7090adedd7d7" class="">
+</p><p id="37895f24-1952-4497-922d-7175cbb1fd81" class="">因此公式可以簡化成:</p><p id="a956ffcd-d63f-47a9-a4c1-abc821705e87" class="">每單位消失速度 =  875 / (4 *25 *單位量U) + (25 / 8)</p><p id="87761501-6924-4158-9ca0-5152ca536210" class="">又或者更簡單的寫法 ＝ 875 / (100*單位量U) + 3.125</p><p id="8e594336-a7ce-4dbd-aa16-52c8c80d2385" class="">
+</p><p id="70ec1c04-0603-4a64-95b6-5800f662181a" class="">我們把凱亞E技能的2U帶入公式:</p><p id="909d6179-b0e1-4c31-bcae-4b676bcb0e65" class="">875 / (100*2) + 3.125 = 4.375 + 3.125 = 7.5</p><p id="41a1c52b-5af1-4d0d-850a-8b5f02716d65" class="">
+</p><p id="fc4c54ed-51da-498b-844b-944c683f3ca0" class="">因此凱亞使出E技能後，在元素完全消失前會以每一個單位7.5的速度減少</p><p id="16f70ed7-e89b-4fd7-bed2-a2afa7a57134" class="">
+</p><h2 id="c423afa5-f7dc-4d16-abee-dabdf300219f" class="">附錄2：角色產生元素時造成的元素量 表</h2><figure id="731c201c-de4e-4580-a03e-82b63504bb66"><a href="https://genshin-impact.fandom.com/wiki/Elemental_Gauge_Theory/Character_Data" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Elemental Gauge Theory/Character Data | Genshin Impact Wiki | Fandom</div><div class="bookmark-description">The following tables display the gauge unit application of character abilities. For Cryo, Dendro, Electro, Hydro, Pyro which can apply auras: 1U: Applies 1U; When applying an aura, creates a 0.8U...</div></div><div class="bookmark-href"><img src="https://static.wikia.nocookie.net/gensin-impact/images/4/4a/Site-favicon.ico/revision/latest?cb=20211203165954" class="icon bookmark-icon"/>https://genshin-impact.fandom.com/wiki/Elemental_Gauge_Theory/Character_Data</div></div><img src="https://static.wikia.nocookie.net/gensin-impact/images/3/39/Site-community-image/revision/latest?cb=20230815143744" class="bookmark-image"/></a></figure></div></article></body></html>
